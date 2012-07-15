@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kalkulator hipoteczny</title>
+    <link type="text/css" rel="stylesheet" media="all" href="styles.css" />
+  </head>
+  
+  <body>
+    <fieldset>
+      <legend>Kredyt hipoteczny</legend>
+      <div><label>Nieruchomość</label>: <input type="text" name="nieruchomosc" value="200000" /></div>
+      <div><label>Kredyt</label>: <input type="text" name="kredyt" value="160000" /></div>
+      <div><label>Okres</label>: <input type="text" name="okres" value="30" /></div>
+      <div><label>RRSO</label>: <input type="text" name="RRSO" value="6,7" size="3" />% <em>ang. Annual percentage rate</em></div>
+      <div><input type="button" name="oblicz" id="oblicz" value="Oblicz" /></div>
+    </fieldset>
+    
+    
+    <div id="kredyt"></div>
+
+    <script id="kredyt-template" type="text/template">
+      <fieldset>
+        <legend>Raty</legend>
+        <%= label %>: <%= name %> = <%= value %> 
+      </fieldset>
+    </script>
+
+    <script id="table-header-template" type="text/template">
+      <thead>
+        <th>#</th>
+        <th>część kapitałowa</th>
+        <th>część odsetkowa</th>
+        <th>rata</th>
+      </thead>
+    </script>
+
+    <script id="tr-template" type="text/template">
+      <td><%= index %></td><td><%= czescKapitalowa %></td><td><%= czescOdsetkowa %></td><td><%= rata %></td>
+    </script>
+    
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="backbone-min.js"></script>
+    <script src="globalize.js"></script>
+    <script src="globalize.culture.pl-PL.js"></script>
+    
+    <script src="app.js"></script>
+  </body>
+</html>

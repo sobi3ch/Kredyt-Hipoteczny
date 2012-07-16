@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Kalkulator hipoteczny</title>
-    <link type="text/css" rel="stylesheet" media="all" href="styles.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="css/styles.css" />
   </head>
   
   <body>
@@ -16,35 +16,20 @@
       <div><input type="button" name="oblicz" id="oblicz" value="Oblicz" /></div>
     </fieldset>
     
-    
     <div id="kredyt"></div>
 
-    <script id="kredyt-template" type="text/template">
-      <fieldset>
-        <legend>Raty</legend>
-        <%= label %>: <%= name %> = <%= value %> 
-      </fieldset>
-    </script>
-
-    <script id="table-header-template" type="text/template">
-      <thead>
-        <th>#</th>
-        <th>część kapitałowa</th>
-        <th>część odsetkowa</th>
-        <th>rata</th>
-      </thead>
-    </script>
-
-    <script id="tr-template" type="text/template">
-      <td><%= index %></td><td><%= czescKapitalowa %></td><td><%= czescOdsetkowa %></td><td><%= rata %></td>
-    </script>
+    <script src="lib/jquery-1.7.2.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+    <script src="lib/globalize.js"></script>
+    <script src="lib/globalize.culture.pl-PL.js"></script>
     
-    <script src="jquery-1.7.2.min.js"></script>
-    <script src="underscore-min.js"></script>
-    <script src="backbone-min.js"></script>
-    <script src="globalize.js"></script>
-    <script src="globalize.culture.pl-PL.js"></script>
-    
-    <script src="app.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/models/rata.js"></script>
+    <script src="js/models/kredyt.js"></script>
+    <script src="js/views/kredyt.js"></script>
+    <script src="js/views/table.js"></script>
+    <script src="js/views/tr.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

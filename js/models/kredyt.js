@@ -45,7 +45,6 @@ window.Kredyt = Backbone.Model.extend({
   
   initialize: function() {
     this.set('okres', this.get('okres')*12); // w miesiacach
-    
     this.set('raty', new Raty(this.obliczRaty()));
     
     this.bind("change:kredyt", function(){

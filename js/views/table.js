@@ -6,13 +6,13 @@ window.TableView = Backbone.View.extend({
     },
 
     render: function() {
-      var header;
+      // table header
+      var table = this;
       $.get('tpl/TableHeaderView.html', function(data) {
-          header = data;
+        $(table.el).append(data);
       }, 'html');
-      $(this.el).append(header);
       
-      // then table body
+      // table body
       _.each(this.model.get('raty').models, function(element, index) {
         element.set('index', index) ;
         $(this.el).append( new TrView({model:element}).el ); //

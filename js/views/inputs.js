@@ -22,10 +22,10 @@ window.InputView = Backbone.View.extend({
   
   setInitials: function() {
     return {
-      nieruchomosc: 200200,
-      kredyt: 151000,
-      okres: 31,
-      RRSO: "6,8"
+      nieruchomosc: 200000,
+      kredyt: 100000,
+      okres: 12,
+      RRSO: "3,5"
     }    
   }
 });

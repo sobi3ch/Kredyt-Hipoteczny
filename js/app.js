@@ -1,5 +1,5 @@
 
-G=Globalize;
+G = Globalize;
 G.culture('pl-PL');
 
 ////////////////////////////////////////////////
@@ -10,8 +10,10 @@ window.AppRouter = Backbone.Router.extend({
   },
 
   list: function() {
+    // for the first time
     this.doCalculation();
     
+    // for recalculation
     var that = this;
     $('#oblicz').click(function() {
       that.doCalculation();
@@ -19,22 +21,18 @@ window.AppRouter = Backbone.Router.extend({
   },
   
   doCalculation: function() {
-    $('#inputs').html(new InputView().el);
-    $('#kredyt').html(new KredytView({model: new Kredyt()}).el);  }
+    // create input view..
+    var inputs = new InputView;
+    
+    // ..insert it to page
+    $('#inputs').html(inputs.el); 
+    
+    // create kredyt model and get initial inputs from just inserted inputs    
+    kredyt = new Kredyt(inputs.getInputs());
+    
+    // create and insert kredytView
+    $('#kredyt').html(new KredytView({model: kredyt}).el);  }
 });
-
-
-// helper
-window.h = {
-  // corect or calculation
-  correct: function(value) {
-    return parseFloat(value.toFixed(2));
-  },
-  
-  cl: function(v) {
-    console.log(v);
-  }
-};
 
 
 templateLoader.load(["InputView", "KredytView", "TrView"],

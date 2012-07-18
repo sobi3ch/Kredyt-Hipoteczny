@@ -17,10 +17,22 @@ window.templateLoader = {
   }
 };
 
-String.prototype.s2i = function() {
-  return parseFloat(this.val().replace(',', '.')); 
+// helper
+window.h = {
+  // corect or calculation
+  correct: function(value) {
+    return parseFloat(value.toFixed(2));
+  },
+  
+  cl: function(v) {
+    console.log(v);
+  }
+};
+
+String.prototype.s2f = function() {
+  return parseFloat(this.replace(',', '.')); 
 };
 
 String.prototype.s2i = function() {
-  return parseInt(this.val());
+  return parseInt(this);
 };

@@ -36,10 +36,11 @@ window.Kredyt = Backbone.Model.extend({
   defaults: {
     kredyt: 150000,
     nieruchomosc: 200000,
-    okres: 10, // miesiecy
+    okres: 10, // months
     prowizja: 2.13,
     marza:    1.2,
     WIBOR3M:  4.97,
+    RRSO: 10,
     typRaty: 'malejace'
   },
   
@@ -89,6 +90,7 @@ window.Kredyt = Backbone.Model.extend({
 
     for(var i=0; i<this.get('okres'); i++) {
       var czescOdsetkowa = h.correct( (S-(i*czescKapitalowa))*r/m );
+      
       raty.push({
         czescKapitalowa: czescKapitalowa,
         czescOdsetkowa: czescOdsetkowa,

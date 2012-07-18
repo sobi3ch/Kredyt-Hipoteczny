@@ -5,7 +5,10 @@ window.KredytView = Backbone.View.extend({
   },
   
   render: function(){
-    var kredytRender = this.template({label: 'Wziety kredyt', value: '3333' });
+    var kredytRender = this.template({
+      label: 'Wziety kredyt', 
+      value: G.format(this.model.get('kredyt'), 'c0')
+    });
 
     // Load the compiled HTML into the Backbone "el"
     $(this.el).html( kredytRender );

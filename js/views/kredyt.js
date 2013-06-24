@@ -11,8 +11,9 @@ window.KredytView = Backbone.View.extend({
     });
 
     // Load the compiled HTML into the Backbone "el"
-    $(this.el).html( kredytRender );
-    $(this.el).find('fieldset').append(new TableView({model: this.model}).el);
+    this.$el.html( kredytRender );
+    this.table = new TableView({model: this.model});
+    this.$el.find('fieldset').append(this.table.el);
 
     return this;
   }  

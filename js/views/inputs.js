@@ -15,7 +15,7 @@ window.InputView = Backbone.View.extend({
     return {
       nieruchomosc: $('input[name="nieruchomosc"]').val().s2i(),
       kredyt: $('input[name="kredyt"]').val().s2i(),
-      okres: $('input[name="okres"]').val().s2i(),
+      okres: $('input[name="okres"]').val().s2i() * 12,
       RRSO: $('input[name="RRSO"]').val().s2f()
     }
   },

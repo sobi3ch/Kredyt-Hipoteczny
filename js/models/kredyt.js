@@ -36,7 +36,7 @@ window.Kredyt = Backbone.Model.extend({
   defaults: {
     kredyt: 150000,
     nieruchomosc: 200000,
-    okres: 10, // months
+    okres: 12, // in months (1 year)
     prowizja: 2.13,
     marza:    1.2,
     WIBOR3M:  4.97,
@@ -45,49 +45,47 @@ window.Kredyt = Backbone.Model.extend({
   },
   
   initialize: function() {
-    this.set('okres', this.get('okres')*12); // w miesiacach
+    this.set('okres', this.get('okres')); // w miesiacach
     this.set('raty', new Raty(this.obliczRaty()));
     
-    this.bind("change:kredyt", function(){
+    this.bind("change:kredyt", function() {
         var kredyt = this.get("kredyt");
         if(kredyt<0) {
-          cl('kredyt nie moze byc ujemny');
+          h.cl('kredyt nie moze byc ujemny');
           this.set('kredyt', 150000);
         } else if(kredyt > this.get('nieruchomosc')) {
-          cl('UWAGA: wartosc kredytu jest wyzsza niz wartosc nieruchomosci!');
-          cl('kredyt: '+ kredyt);
-          cl('nieruchomosc: '+ this.get('nieruchomosc'));
+          h.cl('UWAGA: wartosc kredytu jest wyzsza niz wartosc nieruchomosci!');
+          h.cl('kredyt: '+ kredyt);
+          h.cl('nieruchomosc: '+ this.get('nieruchomosc'));
         } else {
-          cl("Wysokosc kredytu zmienila sie na " + kredyt );          
+          h.cl("Wysokosc kredytu zmienila sie na " + kredyt );          
         }
     });
   },
   
   obliczRate: function() {
-    return 123499;
+    return 123499; // dummy
   },
   
   obliczRaty: function() {
     var raty = new Array(),
     S = this.get('kredyt'),
-    r = this.get('RRSO')/100,
+    r = this.get('RRSO') / 100,
     m = 12,
-    q = 1+(r/m),
+    q = 1 + (r/m),
     n = this.get('okres'),
     czescKapitalowa = h.correct(S/n);
 
 
-//rata = S * q^n * (q-1)/(q^n-1)
-//S – kwota zaciągniętego kredytu
-//n – ilość rat
-//q – współczynnik równy 1 + (r / m), gdzie
-//q^n – “q” do potęgi “n”
-//r – oprocentowanie kredytu
-//m – ilość rat w okresie dla którego obowiązuje oprocentowanie “r”. 
-//     Najczęściej oprocentowanie podawanej jest w skali roku, 
-//     a raty płacone są co miesiąc, więc “m” wtedy jest równe 12.    
-
-
+    // rata = S * q^n * (q-1)/(q^n-1)
+    // S – kwota zaciągniętego kredytu
+    // n – ilość rat
+    // q – współczynnik równy 1 + (r / m), gdzie
+    // q^n – “q” do potęgi “n”
+    // r – oprocentowanie kredytu
+    // m – ilość rat w okresie dla którego obowiązuje oprocentowanie “r”. 
+    //     Najczęściej oprocentowanie podawanej jest w skali roku, 
+    //     a raty płacone są co miesiąc, więc “m” wtedy jest równe 12.    
     for(var i=0; i<this.get('okres'); i++) {
       var czescOdsetkowa = h.correct( (S-(i*czescKapitalowa))*r/m );
       
@@ -99,5 +97,4 @@ window.Kredyt = Backbone.Model.extend({
     }
     return raty;
   }
-  
 });

@@ -6,8 +6,10 @@ window.KredytView = Backbone.View.extend({
   
   render: function(){
     var kredytRender = this.template({
-      label: 'Wziety kredyt', 
-      value: G.format(this.model.get('kredyt'), 'c0')
+      label: 'Kredyt', 
+      value: G.format(this.model.get('kredyt'), 'c0'),
+      wkladWlasnyLabel: 'Wkład własny',
+      wkladWlasny: G.format(this.model.getOnesOwnContribution(), 'c0')
     });
 
     // Load the compiled HTML into the Backbone "el"

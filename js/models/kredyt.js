@@ -96,5 +96,9 @@ window.Kredyt = Backbone.Model.extend({
       });
     }
     return raty;
+  },
+
+  getOnesOwnContribution: function() {
+    return this.get('nieruchomosc') - this.get('kredyt');
   }
 });

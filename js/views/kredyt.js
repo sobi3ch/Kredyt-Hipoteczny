@@ -5,12 +5,12 @@ window.KredytView = Backbone.View.extend({
   },
   
   render: function(){
-    var kredytRender = this.template({
-      label: 'Kredyt', 
-      value: G.format(this.model.get('kredyt'), 'c0'),
-      wkladWlasnyLabel: 'Wkład własny',
-      wkladWlasny: G.format(this.model.getOnesOwnContribution(), 'c0')
-    });
+    var onesOwnContributionPercentage = 100 * (this.model.getOnesOwnContribution()/this.model.get('nieruchomosc')),
+        kredytRender = this.template({
+          kredyt: G.format(this.model.get('kredyt'), 'c0'),
+          wkladWlasny: G.format(this.model.getOnesOwnContribution(), 'c0'),
+          wkladWlasnyProcenty: onesOwnContributionPercentage.toFixed(2)
+        });
 
     // Load the compiled HTML into the Backbone "el"
     this.$el.html( kredytRender );
